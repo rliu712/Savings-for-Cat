@@ -4,12 +4,24 @@ import java.util.*;
 
 import java.time.LocalDate;
 
+/*Represents a history of savings for various purposes, 
+with the same or different amounts, and with different dates.
+It can:
+- Add new savings to the history (but not with the same dates as previous savings) 
+- Showcase the full history of savings that has been made, 
+    or based on specific dates or purpose
+- Calculate the progress that's been made in percentage
+- Conduct the amount that is still in need for a saving to fulfill its purpose
+- Showcase all the purposes that has been fulfilled
+- Move a Saving object from one purpose to another
+
+reference work: Project Funder (in the practice exam)*/
 
 public class SavingsHistory {
     private List<Saving> savingHistory;
     private List<Saving> savingsWithPurpose; 
     private List<Purpose> fulfilledPurposes; 
-        
+     
 
     // EFFECTS: constructs a saving list with no savings added
     public SavingsHistory() {
@@ -41,6 +53,7 @@ public class SavingsHistory {
             }
         }
         savingHistory.add(saving);
+
     }
 
 
@@ -131,5 +144,18 @@ public class SavingsHistory {
             }
         } 
         return fulfilledPurposes;
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: moves the givcen saving to a new purpose
+    //          if saving is already in the purpose, changes will not be made 
+    //          (return out of the method)
+    public void moveSaving(Saving saving, Purpose desiredP) {
+        if (saving.getPurpose() == desiredP) {
+            return;
+        } else {
+            saving.setPurpose(desiredP);
+        }
     }
 }

@@ -15,7 +15,11 @@ public enum Purpose {
 
     final int amountNeeded;
 
-    Purpose (int amountNeeded) {
+    Purpose(int amountNeeded) {
         this.amountNeeded = amountNeeded;
+    }
+
+    public int getAmountNeeded() {
+        return amountNeeded;
     }
 }

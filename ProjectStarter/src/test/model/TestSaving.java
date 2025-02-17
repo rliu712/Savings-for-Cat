@@ -21,4 +21,22 @@ public class TestSaving {
         assertEquals(5, s1.getAmount());
         assertEquals(Purpose.FISH_CANS, s1.getPurpose());
     }
+
+    @Test
+    void testSetDate() {
+        s1.setDate(LocalDate.of(2024, 9, 1));
+        assertEquals(LocalDate.of(2024, 9, 1), s1.getDate());
+    }
+
+    @Test
+    void testSetAmount() {
+        s1.setAmount(10);
+        assertEquals(10, s1.getAmount());
+    }
+
+    @Test
+    void testSetPurpose() {
+        s1.setPurpose(Purpose.FISH_CANS);
+        assertEquals(Purpose.FISH_CANS, s1.getPurpose());
+    }
 }

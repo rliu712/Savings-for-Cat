@@ -19,12 +19,26 @@ public class Saving {
         this.purpose = purpose;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());
+    }
+
+
     public LocalDate getDate() {
         return date;
     }
 
+    // REQUIRES: amount > 0
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public int getAmount() {
         return amount;
+    }
+
+    public void setPurpose(Purpose purpose) {
+        this.purpose = purpose;
     }
 
     public Purpose getPurpose() {
