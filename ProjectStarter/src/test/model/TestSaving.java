@@ -12,14 +12,14 @@ public class TestSaving {
 
     @BeforeEach
     void runBefore() {
-        s1 = new Saving(LocalDate.of(2025, 1, 10), 5, Purpose.FISH_CANS);
+        s1 = new Saving(LocalDate.of(2025, 1, 10), 5, Purpose.FISH_CAN);
     }
 
     @Test
     void testSavingConstructor() {
         assertEquals(LocalDate.of(2025, 1, 10), s1.getDate());
         assertEquals(5, s1.getAmount());
-        assertEquals(Purpose.FISH_CANS, s1.getPurpose());
+        assertEquals(Purpose.FISH_CAN, s1.getPurpose());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class TestSaving {
 
     @Test
     void testSetPurpose() {
-        s1.setPurpose(Purpose.FISH_CANS);
-        assertEquals(Purpose.FISH_CANS, s1.getPurpose());
+        s1.setPurpose(Purpose.FISH_CAN);
+        assertEquals(Purpose.FISH_CAN, s1.getPurpose());
     }
 }

@@ -1,0 +1,16 @@
+{
+    "savings with purpose": [{
+        "date": "2025-03-01",
+        "amount": 5,
+        "purpose": "FISH_CAN"
+    }],
+    "fulfilled purposes": [{
+        "amountNeeded": 5,
+        "name": "FISH_CAN"
+    }],
+    "full savings history": [{
+        "date": "2025-03-01",
+        "amount": 5,
+        "purpose": "FISH_CAN"
+    }]
+}

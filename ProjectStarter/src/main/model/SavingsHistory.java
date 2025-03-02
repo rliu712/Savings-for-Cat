@@ -2,6 +2,10 @@ package model;
 
 import java.util.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 
 /*Represents a history of savings for various purposes, 
@@ -15,9 +19,10 @@ It can:
 - Showcase all the purposes that has been fulfilled
 - Move a Saving object from one purpose to another
 
-reference work: Project Funder (in the practice exam)*/
+reference work: Project Funder (in the practice exam)
+                JSONSERIALIZATIONDEMO */
 
-public class SavingsHistory {
+public class SavingsHistory implements Writable {
     private List<Saving> savingHistory;
     private List<Saving> savingsWithPurpose; 
     private List<Purpose> fulfilledPurposes; 
@@ -41,10 +46,13 @@ public class SavingsHistory {
 
     /*
      * MODIFIES: this
-     * EFFECTS: adds savings to the saving history list
+     * EFFECTS: adds savings to the savings history list
      *          if there isn't a saving in the history that has the same date;
      *          (because only 1 saving can be stored per day)
      *          update saving progresses accordingly
+     *          - additionally, check if the purpose of the saving is fulfilled
+     *          after adding it to the savings history
+     *            -> if fulfilled, add to fulfilledPurposes
      */
     public void addSaving(Saving saving) {
         for (Saving s : savingHistory) {
@@ -53,7 +61,12 @@ public class SavingsHistory {
             }
         }
         savingHistory.add(saving);
-
+        
+        Purpose p = saving.getPurpose();
+        if (savingAmountStillNeed(p) == 0 && !fulfilledPurposes.contains(p)) {
+            fulfilledPurposes.add(p);
+        }
+        
     }
 
 
@@ -158,4 +171,37 @@ public class SavingsHistory {
             saving.setPurpose(desiredP);
         }
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("fulfilled purposes", purposesToJson());
+        json.put("savings with purpose", savingsToJson(savingsWithPurpose));
+        json.put("full savings history", savingsToJson(savingHistory));
+
+        return json;
+    }
+
+    // EFFECTS: returns savings in this savings history as a JSON array, according to specific needs
+    private JSONArray savingsToJson(List<Saving> savings) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Saving s : savingHistory) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns the purposes that have been fulfilled in this savings history as a JSON array
+    private JSONArray purposesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Purpose p : fulfilledPurposes) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+    
 }

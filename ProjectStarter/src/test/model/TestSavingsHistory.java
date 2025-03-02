@@ -24,14 +24,14 @@ public class TestSavingsHistory {
 
     @BeforeEach
     void runBefore() {
-        s1 = new Saving(LocalDate.of(2025, 1, 1), 2, Purpose.FISH_CANS);
-        s2 = new Saving(LocalDate.of(2025, 1, 2), 3, Purpose.FISH_CANS);
-        s3 = new Saving(LocalDate.of(2025, 1, 5), 20, Purpose.MICE_TOYS);
+        s1 = new Saving(LocalDate.of(2025, 1, 1), 2, Purpose.FISH_CAN);
+        s2 = new Saving(LocalDate.of(2025, 1, 2), 3, Purpose.FISH_CAN);
+        s3 = new Saving(LocalDate.of(2025, 1, 5), 20, Purpose.MICE_TOY);
         s4 = new Saving(LocalDate.of(2025, 1, 6), 40, Purpose.CAT_LITTER);
         s5 = new Saving(LocalDate.of(2025,1,7), 60, Purpose.CAT_TREE);
         s6 = new Saving(LocalDate.of(2025,1,8), 10, Purpose.CAT_TREE);
-        s7 = new Saving(LocalDate.of(2025,1,9), 10, Purpose.FISH_CANS);
-        s8 = new Saving(LocalDate.of(2025,1,1), 10, Purpose.MICE_TOYS);
+        s7 = new Saving(LocalDate.of(2025,1,9), 10, Purpose.FISH_CAN);
+        s8 = new Saving(LocalDate.of(2025,1,1), 10, Purpose.MICE_TOY);
         sh = new SavingsHistory();
     }
 
@@ -54,27 +54,27 @@ public class TestSavingsHistory {
     void testGetSavingsForPurpose() {
         sh.addSaving(s1);
         sh.addSaving(s3);
-        assertEquals(s1, sh.getSavingsForPurpose(Purpose.FISH_CANS).get(0));
-        assertEquals(s3, sh.getSavingsForPurpose(Purpose.MICE_TOYS).get(0));
+        assertEquals(s1, sh.getSavingsForPurpose(Purpose.FISH_CAN).get(0));
+        assertEquals(s3, sh.getSavingsForPurpose(Purpose.MICE_TOY).get(0));
         assertTrue(sh.getSavingsForPurpose(Purpose.CAT_TREE).isEmpty());
     }
 
     @Test
     void testSavingProgressMade() {
         sh.addSaving(s1);
-        assertEquals(40, sh.savingProgressMade(Purpose.FISH_CANS));
+        assertEquals(40, sh.savingProgressMade(Purpose.FISH_CAN));
         sh.addSaving(s2);
-        assertEquals(100, sh.savingProgressMade(Purpose.FISH_CANS));
+        assertEquals(100, sh.savingProgressMade(Purpose.FISH_CAN));
     }
 
     @Test
     void testSavingAmountStillNeed() {
         sh.addSaving(s1);
-        assertEquals(3, sh.savingAmountStillNeed(Purpose.FISH_CANS));
+        assertEquals(3, sh.savingAmountStillNeed(Purpose.FISH_CAN));
         sh.addSaving(s2);
-        assertEquals(0, sh.savingAmountStillNeed(Purpose.FISH_CANS));
+        assertEquals(0, sh.savingAmountStillNeed(Purpose.FISH_CAN));
         sh.addSaving(s7);
-        assertEquals(0, sh.savingAmountStillNeed(Purpose.FISH_CANS));
+        assertEquals(0, sh.savingAmountStillNeed(Purpose.FISH_CAN));
     }
 
     @Test
@@ -82,9 +82,9 @@ public class TestSavingsHistory {
         sh.addSaving(s1);
         assertTrue(sh.getFulfilledPurposes().isEmpty());
         sh.addSaving(s2);
-        assertEquals(Purpose.FISH_CANS, sh.getFulfilledPurposes().get(0));
+        assertEquals(Purpose.FISH_CAN, sh.getFulfilledPurposes().get(0));
         sh.addSaving(s3);
-        assertEquals(Purpose.MICE_TOYS, sh.getFulfilledPurposes().get(1));
+        assertEquals(Purpose.MICE_TOY, sh.getFulfilledPurposes().get(1));
         assertEquals(2, sh.getFulfilledPurposes().size());
     }
     
@@ -95,9 +95,9 @@ public class TestSavingsHistory {
         sh.addSaving(s1);
         assertEquals(5, s1.getPurpose().getAmountNeeded());
         assertEquals(s1, sh.getFullSavingHistory().get(0));
-        assertEquals(s1, sh.getSavingsForPurpose(Purpose.FISH_CANS).get(0));
-        assertEquals(40, sh.savingProgressMade(Purpose.FISH_CANS));     // 40% 
-        assertEquals(3, sh.savingAmountStillNeed(Purpose.FISH_CANS));
+        assertEquals(s1, sh.getSavingsForPurpose(Purpose.FISH_CAN).get(0));
+        assertEquals(40, sh.savingProgressMade(Purpose.FISH_CAN));     // 40% 
+        assertEquals(3, sh.savingAmountStillNeed(Purpose.FISH_CAN));
         assertTrue(sh.getFulfilledPurposes().isEmpty());
     }
 
@@ -117,9 +117,9 @@ public class TestSavingsHistory {
         sh.addSaving(s3);
         assertEquals(20, s3.getPurpose().getAmountNeeded());
         assertEquals(s3, sh.getFullSavingHistory().get(0));
-        assertEquals(s3, sh.getSavingsForPurpose(Purpose.MICE_TOYS).get(0));
-        assertEquals(100, sh.savingProgressMade(Purpose.MICE_TOYS));   // 100%
-        assertEquals(0, sh.savingAmountStillNeed(Purpose.MICE_TOYS));
+        assertEquals(s3, sh.getSavingsForPurpose(Purpose.MICE_TOY).get(0));
+        assertEquals(100, sh.savingProgressMade(Purpose.MICE_TOY));   // 100%
+        assertEquals(0, sh.savingAmountStillNeed(Purpose.MICE_TOY));
         assertEquals(1, sh.getFulfilledPurposes().size());
 
         sh.addSaving(s4);

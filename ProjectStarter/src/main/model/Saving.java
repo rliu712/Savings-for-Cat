@@ -2,12 +2,17 @@ package model;
 
 import java.time.LocalDate;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /*
  * Represents a single saving history;
  * includes the date, the amount, and the purpose of the saving
  * Only 1 saving can be made in a day
+ * 
+ * referenced work: Jsonserializationdemo
  */
-public class Saving {
+public class Saving implements Writable {
     private LocalDate date;
     private int amount;
     private Purpose purpose;
@@ -43,5 +48,14 @@ public class Saving {
 
     public Purpose getPurpose() {
         return purpose;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("amount", amount);
+        json.put("purpose", purpose);
+        return json;
     }
 }

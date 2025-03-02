@@ -1,0 +1,60 @@
+{
+    "full savings history": [
+        {
+            "date": "2025-02-25",
+            "amount": 5,
+            "purpose": "FISH_CAN"
+        },
+        {
+            "date": "2025-02-26",
+            "amount": 20,
+            "purpose": "MICE_TOY"
+        },
+        {
+            "date": "2025-02-27",
+            "amount": 40,
+            "purpose": "CAT_LITTER"
+        },
+        {
+            "date": "2025-02-28",
+            "amount": 70,
+            "purpose": "CAT_TREE"
+        }
+    ],
+    "savings with purpose": {
+        "FISH_CAN": [
+            {
+                "date": "2025-02-25",
+                "amount": 5,
+                "purpose": "FISH_CAN"
+            }
+        ],
+        "MICE_TOY": [
+            {
+                "date": "2025-02-26",
+                "amount": 20,
+                "purpose": "MICE_TOY"
+            }
+        ],
+        "CAT_LITTER": [
+            {
+                "date": "2025-02-27",
+                "amount": 40,
+                "purpose": "CAT_LITTER"
+            }
+        ],
+        "CAT_TREE": [
+            {
+                "date": "2025-02-28",
+                "amount": 70,
+                "purpose": "CAT_TREE"
+            }
+        ]
+    },
+    "fulfilled purposes": [
+        "FISH_CAN",
+        "MICE_TOY",
+        "CAT_LITTER",
+        "CAT_TREE"
+    ]
+}

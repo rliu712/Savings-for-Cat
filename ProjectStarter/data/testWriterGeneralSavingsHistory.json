@@ -1,0 +1,36 @@
+{
+    "savings with purpose": [
+        {
+            "date": "2025-02-27",
+            "amount": 5,
+            "purpose": "FISH_CAN"
+        },
+        {
+            "date": "2025-02-28",
+            "amount": 20,
+            "purpose": "MICE_TOY"
+        }
+    ],
+    "fulfilled purposes": [
+        {
+            "amountNeeded": 5,
+            "name": "FISH_CAN"
+        },
+        {
+            "amountNeeded": 20,
+            "name": "MICE_TOY"
+        }
+    ],
+    "full savings history": [
+        {
+            "date": "2025-02-27",
+            "amount": 5,
+            "purpose": "FISH_CAN"
+        },
+        {
+            "date": "2025-02-28",
+            "amount": 20,
+            "purpose": "MICE_TOY"
+        }
+    ]
+}
