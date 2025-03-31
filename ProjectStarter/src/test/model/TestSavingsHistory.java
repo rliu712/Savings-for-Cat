@@ -160,7 +160,7 @@ public class TestSavingsHistory {
         assertEquals(Purpose.CAT_LITTER, s4.getPurpose());
         assertEquals(100, sh.savingProgressMade(Purpose.CAT_LITTER));
         assertEquals(0, sh.savingProgressMade(Purpose.CAT_TREE));
-        sh.moveSaving(s4, Purpose.CAT_TREE);
+        sh.moveSaving(s4.getPurpose(), Purpose.CAT_TREE, 40);
         assertEquals(Purpose.CAT_TREE, s4.getPurpose());
         assertEquals(57, sh.savingProgressMade(Purpose.CAT_TREE));
         assertEquals(0, sh.savingProgressMade(Purpose.CAT_LITTER));
@@ -173,7 +173,7 @@ public class TestSavingsHistory {
         assertEquals(Purpose.CAT_LITTER, s4.getPurpose());
         assertEquals(100, sh.savingProgressMade(Purpose.CAT_LITTER));
         assertEquals(0, sh.savingProgressMade(Purpose.CAT_TREE));
-        sh.moveSaving(s4, Purpose.CAT_LITTER);
+        sh.moveSaving(s4.getPurpose(), Purpose.CAT_LITTER, 40);
         assertEquals(Purpose.CAT_LITTER, s4.getPurpose());
         assertEquals(100, sh.savingProgressMade(Purpose.CAT_LITTER));
     }

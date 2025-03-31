@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONObject;
 import persistence.Writable;
+import java.util.*;
 
 /*
  * Represents the different purposes for a saving
@@ -24,6 +25,10 @@ public enum Purpose implements Writable {
 
     public int getAmountNeeded() {
         return amountNeeded;
+    }
+    
+    public boolean checkEquals(String input) {
+        return this.name().equalsIgnoreCase(input);
     }
 
     @Override

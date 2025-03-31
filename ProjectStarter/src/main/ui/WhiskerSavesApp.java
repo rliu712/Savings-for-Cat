@@ -21,6 +21,7 @@ reference source (other than the TellerApp class):
 public class WhiskerSavesApp {
     private static final String JSON_STORE = "./data/savingshistory.json";
     private SavingsHistory savingsHistory;
+    private Saving saving;
     private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -108,8 +109,8 @@ public class WhiskerSavesApp {
         Purpose savingPurpose = getPurpose();
         int amount = getAmount();
 
-        Saving newSaving = new Saving(time, amount, savingPurpose);
-        savingsHistory.addSaving(newSaving);
+        saving = new Saving(time, amount, savingPurpose);
+        savingsHistory.addSaving(saving);
 
         System.out.println("Ameowzing! Saving has been added!");
     }

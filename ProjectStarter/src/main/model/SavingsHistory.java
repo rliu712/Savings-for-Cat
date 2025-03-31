@@ -25,7 +25,7 @@ reference work: Project Funder (in the practice exam)
 public class SavingsHistory implements Writable {
     private List<Saving> savingHistory;
     private List<Saving> savingsWithPurpose; 
-    private List<Purpose> fulfilledPurposes; 
+    private List<Purpose> fulfilledPurposes;
      
 
     // EFFECTS: constructs a saving list with no savings added
@@ -60,13 +60,19 @@ public class SavingsHistory implements Writable {
                 return;
             }
         }
-        savingHistory.add(saving);
         
+        String date = saving.getDate().toString();
+        int amount = saving.getAmount();
+        Purpose purpose = saving.getPurpose();
+
+        EventLog.getInstance().logEvent(new Event("Added saving: $" + amount + " for " + purpose));
+
+        savingHistory.add(saving);
+
         Purpose p = saving.getPurpose();
         if (savingAmountStillNeed(p) == 0 && !fulfilledPurposes.contains(p)) {
             fulfilledPurposes.add(p);
         }
-        
     }
 
 
@@ -161,14 +167,25 @@ public class SavingsHistory implements Writable {
 
 
     // MODIFIES: this
-    // EFFECTS: moves the givcen saving to a new purpose
+    // EFFECTS: moves the givcen saving to a desired purpose from original
     //          if saving is already in the purpose, changes will not be made 
     //          (return out of the method)
-    public void moveSaving(Saving saving, Purpose desiredP) {
-        if (saving.getPurpose() == desiredP) {
+    public void moveSaving(Purpose originalP, Purpose desiredP, int amount) {
+        int amountToMove = amount;
+        if (originalP == desiredP) {
+            return;
+        } 
+        if (getSavingsForPurpose(originalP).isEmpty()) {
             return;
         } else {
-            saving.setPurpose(desiredP);
+            for (Saving s : getSavingsForPurpose(originalP)) {
+                if (s.getAmount() == amount) {
+                    s.setPurpose(desiredP);
+                    EventLog.getInstance().logEvent(new Event(
+                            "A $" + amount + " saving has been moved from " + originalP + " to " + desiredP + "!"));
+
+                }
+            }
         }
     }
 
