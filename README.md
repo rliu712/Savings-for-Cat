@@ -1,7 +1,7 @@
 # Rhiannon's Personal Project
 My project will create a saving tracker that keeps track of the amount of money that's being saved with different categories (purposes). In this case, the categories of the savings will be *buying*:
 - fish can (5 dollars a can)
-- mice toy (20 dollars each)
+- mouse toy (20 dollars each)
 - cat litter (30 dollars a bag)
 - and cat trees (70 dollars each).
 The user can only put in 1 saving per day, so it's quite a journey!
